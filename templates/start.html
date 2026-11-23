@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Projects · Project Data Platform{% endblock %}
+{% block content %}
+<div class="pagehead"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>Projects</h1><p>Organize your working data into focused projects.</p></div></div>
+<div class="layout two">
+<section class="panel"><h2>Start a project</h2><form method="post" action="{{ url_for('create_project') }}" class="stack"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><label>Project name<input name="name" required minlength="2" maxlength="60"></label><label>Description <span class="muted">Optional</span><textarea name="description" maxlength="500" rows="2"></textarea></label><label>Starting point<select name="template">{% for name,sheets in templates %}<option>{{ name }}</option>{% endfor %}</select></label><button class="primary">Create project</button></form></section>
+<section class="panel"><div class="sectionhead"><h2>Recent projects</h2><span class="count">{{ projects|length }}</span></div>
+{% if projects %}<ul class="project-list">{% for p in projects %}<li><a href="{{ url_for('project_home',project_id=p.id) }}"><strong>{{ p.name }}</strong><span>{{ p.description or "No description" }}</span></a></li>{% endfor %}</ul>{% else %}<div class="empty"><strong>No projects yet</strong><p>Create a project to start organizing your data.</p></div>{% endif %}</section>
+</div>
+{% endblock %}

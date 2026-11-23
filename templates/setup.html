@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Welcome · Project Data Platform{% endblock %}
+{% block content %}
+<section class="narrow intro"><p class="eyebrow">FIRST-TIME SETUP</p><h1>Set up your workspace</h1><p>Choose the display name used for this local workspace.</p>
+<form method="post" class="stack"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><label>Display name<input name="display_name" required minlength="2" maxlength="60" pattern=".*[A-Za-z].*" autocomplete="name"></label><button class="primary">Continue</button></form></section>
+{% endblock %}

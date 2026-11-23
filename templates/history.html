@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Change history · {{ project.name }}{% endblock %}{% block content %}
+<div class="crumb"><a href="{{ url_for('project_home',project_id=project.id) }}">{{ project.name }}</a><span>/</span>Change history</div><div class="pagehead"><div><p class="eyebrow">AUDIT TRAIL</p><h1>Change history</h1><p>Append-only, hash-chained local activity log.</p></div></div>
+<section class="panel">{% for item in entries %}<div class="audit-row"><div><strong>{{ item.action|replace("."," ")|title }}</strong><span>{{ item.entity }} #{{ item.entity_id }}</span></div><time>{{ item.timestamp }}</time></div>{% else %}<div class="empty">No changes recorded.</div>{% endfor %}</section>{% endblock %}
